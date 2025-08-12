@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Mi Agencia - Pedidos</title>
 </head>
 <body>
   <nav>
@@ -10,9 +9,16 @@
     <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
     <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a>
   </nav>
-
-  <h1>Inicio</h1>
-
+  <h1>Listado de Pedidos</h1>
+    {% if Pedido %}
+        <ul>
+            {% for Pedido in Pedido %}
+                <li>{{Pedido}}</li>
+            {% endfor %}
+        </ul>
+    {%else%} 
+        <p> no hay datos. </p>
+    {% endif %}
   {% block content %}
   {% endblock %}
 </body>

@@ -8,9 +8,9 @@
 <body>
     <nav>
         <a href="{% url 'inicio' %}">Inicio</a> |
-        <a href="{% url 'listado_de_autos' %}">Listado de Autos</a> |
-        <a href="{% url 'crear_auto' %}">Crear Auto</a>
-    </nav>
+        <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
+        <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a>
+  </nav>
     <form action="" method="POST">
         {% csrf_token %} 
         {{formulario}}
