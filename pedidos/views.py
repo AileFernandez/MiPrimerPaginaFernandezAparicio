@@ -13,5 +13,5 @@ def nuevo_pedido(request):
     return render(request, "pedidos/nuevo_pedido.html", {"form": form})
 
 def lista_pedidos(request):
-    pedidos = Pedido.objects.order_by("-creado_en")
+    pedidos = Pedido.objects.all()
     return render(request, "pedidos/lista_pedidos.html", {"pedidos": pedidos})

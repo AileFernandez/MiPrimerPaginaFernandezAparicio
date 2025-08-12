@@ -13,8 +13,8 @@
   </nav>
     <form action="" method="POST">
         {% csrf_token %} 
-        {{formulario}}
-        <input type="submit" value="Crear">
+        {{form.as_p}}
+        <input type="submit" value="Enviar Solicitud">
     </form>
 </body>
 </html>

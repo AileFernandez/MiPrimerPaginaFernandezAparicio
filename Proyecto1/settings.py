@@ -26,7 +26,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'viajes_agencia.urls'
+ROOT_URLCONF = 'Proyecto1.urls'
 
 TEMPLATES = [
     {
@@ -44,7 +44,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'viajes_agencia.wsgi.application'
+WSGI_APPLICATION = 'Proyecto1.wsgi.application'
+
 
 DATABASES = {
     'default': {

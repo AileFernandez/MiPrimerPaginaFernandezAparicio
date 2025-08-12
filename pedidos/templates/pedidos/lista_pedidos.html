@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Listado de Pedidos</title>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'inicio' %}">Inicio</a> |
+    <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
+    <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a>
+  </nav>
+
+  <h1>Listado de Pedidos</h1>
+
+  {% if pedidos %}
+    <table border="1" cellspacing="0" cellpadding="8">
+      <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Destino</th>
+          <th>Fecha del viaje</th>
+          <th>Personas</th>
+          <th>Mensaje</th>
+          <th>Fecha de creación</th>
+      </tr>
+      {% for pedido in pedidos %}
+      <tr>
+          <td>{{ pedido.nombre }}</td>
+          <td>{{ pedido.email }}</td>
+          <td>{{ pedido.destino }}</td>
+          <td>{{ pedido.fecha_viaje }}</td>
+          <td>{{ pedido.cantidad_personas }}</td>
+          <td>{{ pedido.mensaje }}</td>
+          <td>{{ pedido.creado_en }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No hay pedidos registrados.</p>
+  {% endif %}
+</body>
+</html>
+
