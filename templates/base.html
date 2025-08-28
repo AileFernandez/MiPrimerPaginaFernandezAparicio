@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Wanderlust Travel Agency</title>
+  <style>
+    /* Fondo y fuente general */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f5f2;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Barra de navegación */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 10px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    nav img {
+      height: 60px; /* Ajusta el tamaño del logo */
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #023e8a;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #0077b6;
+    }
+    nav form {
+      display: inline;
+    }
+    nav input[type="submit"] {
+      border: none;
+      background: none;
+      color: #d62828;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Secciones */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Títulos */
+    h1, h2 {
+      text-align: center;
+      color: #023e8a;
+      margin-bottom: 20px;
+    }
+    h3 {
+      color: #0077b6;
+    }
+
+    /* Texto */
+    p {
+      margin-bottom: 15px;
+    }
+
+    /* Tarjetas */
+    .card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Botones */
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background-color: #0077b6;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #023e8a;
+    }
+
+    /* Imagenes */
+    .img-rounded {
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <nav>
+    <a href="{% url 'inicio' %}">
+      <img src="\media\imagenes_pedidos\LogoWanderlust.jpg" alt="Wanderlust Travel Agency">
+    </a>
+    <div>
+      <a href="{% url 'inicio' %}">Inicio</a> |
+      <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
+      <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a> |
+      <a href="{% url 'about' %}">About me</a> |
+
+      {% if request.user.is_authenticated %}
+        <a href={% url "perfil" %}>{{request.user.username}}</a>
+        <form action={% url "cerrar_sesion" %} method="POST">
+          {% csrf_token %}
+          <input type="submit" value="Cerrar Sesion">
+        </form>
+      {% else %}
+        <a href={% url "iniciar_sesion" %}>Iniciar Sesion</a>
+        <a href={% url "registro" %}>Registrarse</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Contenido dinámico -->
+  {% block contenido %}{% endblock contenido %}
+
+</body>
+</html>

@@ -8,6 +8,9 @@ class Pedido(models.Model):
     cantidad_personas = models.PositiveIntegerField(default=1)
     mensaje = models.TextField(blank=True)
     creado_en = models.DateTimeField(auto_now_add=True)
+    imagen = models.ImageField(upload_to='imagenes_pedidos', null=True, blank=True)
+    
 
     def __str__(self):
         return f"{self.nombre} - {self.destino} ({self.creado_en.date()})"
+

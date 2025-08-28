@@ -1,44 +1,28 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <title>Listado de Pedidos</title>
-</head>
-<body>
-  <nav>
-    <a href="{% url 'inicio' %}">Inicio</a> |
-    <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
-    <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a>
-  </nav>
+{% extends 'base.html' %}
+{% block textodelh1 %} Listado de Pedidos {% endblock textodelh1 %}
 
-  <h1>Listado de Pedidos</h1>
+{% block contenido %}
 
-  {% if pedidos %}
-    <table border="1" cellspacing="0" cellpadding="8">
-      <tr>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Destino</th>
-          <th>Fecha del viaje</th>
-          <th>Personas</th>
-          <th>Mensaje</th>
-          <th>Fecha de creación</th>
-      </tr>
-      {% for pedido in pedidos %}
-      <tr>
-          <td>{{ pedido.nombre }}</td>
-          <td>{{ pedido.email }}</td>
-          <td>{{ pedido.destino }}</td>
-          <td>{{ pedido.fecha_viaje }}</td>
-          <td>{{ pedido.cantidad_personas }}</td>
-          <td>{{ pedido.mensaje }}</td>
-          <td>{{ pedido.creado_en }}</td>
-      </tr>
+   <form action="" method="GET">
+        {{formulario}}
+        <input type="submit" value="Buscar ">
+    </form>
+
+  {% if pedidos_buscados %}
+    <UL>
+      {% for Pedido in pedidos_buscados %}
+        <li>
+          {{Pedido}}
+            <a href = {% url "pedidos:detalle_pedido" Pedido.id %} > Detalle</a>
+            <a href = {% url "pedidos:borrar_pedido" Pedido.id %} > Borrar</a>
+            <a href = {% url "pedidos:actualizar_pedido" Pedido.id %} > Actualizar</a>
+        </li>
       {% endfor %}
-    </table>
+    </UL>
   {% else %}
     <p>No hay pedidos registrados.</p>
   {% endif %}
-</body>
-</html>
+
+{% endblock contenido %}
+
 

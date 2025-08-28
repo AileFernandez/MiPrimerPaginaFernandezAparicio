@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block textodelh1 %} Pedido: {{ pedido }} {% endblock textodelh1 %}
+{% block contenido %}
+    <ul>
+        <li>Nombre: {{ pedido.nombre }}</li>
+        <li>Email: {{ pedido.email }}</li>
+        <li>Destino: {{ pedido.destino }}</li>
+        <li>Fecha de Viaje: {{ pedido.fecha_viaje }}</li>
+        <li>Número de Personas: {{ pedido.cantidad_personas }}</li>
+        <li>Comentarios Adicionales: {{ pedido.mensaje }}</li>
+        {% if pedido.imagen %}
+            <li>Imagen: <img src="{{ pedido.imagen.url }}" alt="Imagen del pedido" width="300"></li>
+        {% else %}
+            <li>Imagen: No se subió ninguna imagen.</li>
+        {% endif %}
+    </ul>
+{% endblock contenido %}
+

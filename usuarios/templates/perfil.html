@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+{% block textodelh1 %} Perfil de {{request.user.first_name}} {{request.user.last_name}}{% endblock textodelh1 %}
+{% block contenido %}
+<ul>
+    <li>Username: {{request.user.username}}</li>
+    <li>Nombre: {{request.user.first_name}}</li>
+    <li>Apellido: {{request.user.last_name}}</li>
+    <li>Email: {{request.user.email}}</li>
+</ul>
+{% endblock contenido %}

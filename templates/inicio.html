@@ -1,20 +1,156 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Mi Agencia - Pedidos</title>
+  <meta charset="UTF-8">
+  <title>Wanderlust Travel Agency</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f5f2; /* tono claro similar al logo */
+      color: #333;
+    }
+    header {
+      background-color: white;
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    header img {
+      width: 70px;  /* 👈 tamaño más balanceado para tu logo */
+      height: 40;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    nav a {
+      text-decoration: none;
+      color: #0077b6;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    nav form {
+      display: inline;
+      margin: 0;
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+      color: #023e8a;
+    }
+    .hero p {
+      font-size: 1.2em;
+      margin: 20px 0;
+    }
+    .btn {
+      background-color: #0096c7;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #0077b6;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      color: #03045e;
+      margin-bottom: 20px;
+    }
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 280px;
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="{% url 'inicio' %}">Inicio</a> |
-    <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
-    <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a>
-  </nav>
+  <header>
+    <!-- 👇 Logo a la izquierda -->
+    <img src="\media\imagenes_pedidos\LogoWanderlust.jpg" alt="Wanderlust Travel Agency">
 
-  <h1>Inicio</h1>
-    <p>Bienvenido a la página de inicio de Mi Agencia. Aquí puedes gestionar tus pedidos de viajes.</p>
+    <!-- 👇 Barra de navegación -->
+    <nav>
+      <a href="{% url 'inicio' %}">Inicio</a> |
+      <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
+      <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a> |
+      <a href="{% url 'about' %}">About me</a> |
 
-  {% block content %}
-  {% endblock %}
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'perfil' %}">{{request.user.username}}</a>
+        <form action="{% url 'cerrar_sesion' %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="Cerrar Sesion">
+        </form>
+      {% else %}
+        <a href="{% url 'iniciar_sesion' %}">Iniciar Sesion</a>
+        <a href="{% url 'registro' %}">Registrarse</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Bienvenido a Wanderlust Travel Agency</h1>
+    <p>Tu aventura comienza aquí. Descubre los mejores destinos con nosotros.</p>
+    <a href="{% url 'about' %}" class="btn">Contáctanos</a>
+  </section>
+
+  <section class="section">
+    <h2>Mis Servicios</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Paquetes Turísticos</h3>
+        <p>Descubre experiencias únicas y diseñadas para ti.</p>
+      </div>
+      <div class="card">
+        <h3>Reservas de Vuelos</h3>
+        <p>Encuentra las mejores opciones y precios para tu viaje.</p>
+      </div>
+      <div class="card">
+        <h3>Asesoría Personalizada</h3>
+        <p>Te acompañamos en cada paso de tu aventura.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Destinos Populares</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>París</h3>
+        <p>La ciudad del amor y la luz, siempre un clásico.</p>
+      </div>
+      <div class="card">
+        <h3>Tokio</h3>
+        <p>Una mezcla perfecta entre tradición y modernidad.</p>
+      </div>
+      <div class="card">
+        <h3>Río de Janeiro</h3>
+        <p>Playas, samba y alegría en cada rincón.</p>
+      </div>
+    </div>
+  </section>
 </body>
 </html>

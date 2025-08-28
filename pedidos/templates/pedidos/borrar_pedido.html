@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block textodelh1 %} Borrar Pedido {% endblock textodelh1 %}
+{% block contenido %}
+    <form action="" method="POST">
+        {% csrf_token %} 
+        <p>¿Estás seguro de que deseas borrar el pedido: {{ pedido }}?</p>
+        {{form.as_p}}
+        <input type="submit" value="Confirmar">
+    </form>
+{% endblock contenido %}

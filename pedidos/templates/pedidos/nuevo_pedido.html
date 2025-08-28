@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=s, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <nav>
-        <a href="{% url 'inicio' %}">Inicio</a> |
-        <a href="{% url 'pedidos:lista_pedidos' %}">Listado de Pedidos</a> |
-        <a href="{% url 'pedidos:nuevo_pedido' %}">Nuevos pedidos</a>
-  </nav>
-    <form action="" method="POST">
-        {% csrf_token %} 
-        {{form.as_p}}
-        <input type="submit" value="Enviar Solicitud">
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block textodelh1 %} Nuevo Pedido {% endblock textodelh1 %}
+
+{% block contenido %}
+<form action="{% url 'pedidos:nuevo_pedido' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Enviar Solicitud">
+</form>
+{% endblock contenido %}

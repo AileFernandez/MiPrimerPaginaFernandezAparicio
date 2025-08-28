@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block textodelh1 %} Iniciar Sesion {% endblock textodelh1 %}
+{% block contenido %}
+    <form action="" method="POST">
+        {% csrf_token %} 
+        {{formulario}}
+        <input type="submit" value="Iniciar Sesion">
+    </form>
+{% endblock contenido %}
